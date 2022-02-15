@@ -7,7 +7,8 @@ class Sidebar {
   /**
    * Запускает initAuthLinks и initToggleButton
    * */
-  static init() {
+
+  static init() {  
     this.initAuthLinks();
     this.initToggleButton();
   }
@@ -18,7 +19,13 @@ class Sidebar {
    * при нажатии на кнопку .sidebar-toggle
    * */
   static initToggleButton() {
+    let body = document.querySelector('.sidebar-mini');
+    let button = document.querySelector('.sidebar-toggle');
 
+    button.addEventListener('click', () => {
+      body.classList.toggle('sidebar-open');
+      body.classList.toggle('sidebar-collapse');
+    })
   }
 
   /**
@@ -29,6 +36,26 @@ class Sidebar {
    * выходу устанавливает App.setState( 'init' )
    * */
   static initAuthLinks() {
-
+    let sidebarItem = document.querySelector('.sidebar-menu').querySelectorAll('.menu-item');
+    sidebarItem.forEach(element => {
+      if(element.classList.contains('menu-item_login')) {
+        element.addEventListener('click', () => {
+          let login = App.getModal('login');
+          login.open();
+        })
+      }
+      if(element.classList.contains('menu-item_register')){        
+        element.addEventListener('click', () => {
+          let register = App.getModal('register');
+          register.open();
+        })
+      }
+      if(element.classList.contains('menu-item_logout')){         
+        element.addEventListener('click', () => {
+          User.logout();
+          App.setState('init');
+        })
+      }
+    });
   }
 }

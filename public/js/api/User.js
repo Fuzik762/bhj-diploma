@@ -37,7 +37,7 @@ class User {
   static fetch(callback) {
     createRequest({
       url: this.URL + "/current",
-      data: data,
+      data: {},
       method: "GET",
       callback: (err, response) => {
         if (response.success === true) {
@@ -81,8 +81,8 @@ class User {
   static register(data, callback) {
     createRequest({
       url: this.URL + "/register",
-      data: data,
       method: "POST",
+      data,
       callback: (err, response) => {
         if (response.success === true) {
           this.setCurrent(response.user);
@@ -101,8 +101,8 @@ class User {
   static logout(callback) {
     createRequest({
       url: this.URL + "/logout",
-      data: data,
       method: "POST",
+      data: {},
       callback: (err, response) => {
         if (response.success === true) {
           this.unsetCurrent(response.user);
