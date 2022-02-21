@@ -10,15 +10,15 @@ const createRequest = (options = {}) => {
   if(options.method) {
     data = Object.entries(options.data);
     method = options.method;
+    url = options.url;
     if(method === 'GET') {
-      url = options.url + '?';
+      url += '?';
       for ([key, value] of data) {
         url += key + '=' + value + '&';
       }
     }
     if(method === 'POST') {
-      formData = new FormData;
-      url = options.url;
+      this.formData = new FormData;
       for ([key, value] of data) {
         formData.append( key, value );
       }
@@ -31,17 +31,13 @@ const createRequest = (options = {}) => {
   try {
     xhr.open( method, url );
     xhr.addEventListener('readystatechange',function(){
-        if(this.readyState == xhr.DONE){
-          callback = (err, response) => {
-            if (response && response.user) {
-              this.setCurrent(response.user);
-            }
-            callback(err, response);
-          }
-        }
-      });
+      if(this.readyState == xhr.DONE && xhr.status === 200){
+        options.callback(xhr.response.error, xhr.response);
+      }
+    });
         
-    xhr.send( method === 'GET' ? {} : formData );
+    xhr.send( method === 'GET' ? {} : this.formData );
+    
   } catch (error) {
     console.log(error);
   }

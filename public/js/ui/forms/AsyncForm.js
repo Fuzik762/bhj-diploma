@@ -13,7 +13,6 @@ class AsyncForm {
    * через registerEvents()
    * */
   constructor(element) {
-    console.log(element);
     if(element) {
       this.element = element;
       this.registerEvents();
@@ -45,7 +44,6 @@ class AsyncForm {
     let entires = formData.entries();
     let returnData = {};
     for (const iterator of entires) {
-      console.log(iterator)
       const key = iterator[0];
       const value = iterator[1];
       returnData[key] = value;
@@ -63,7 +61,6 @@ class AsyncForm {
    * */
   submit() {
     const data = this.getData();
-    console.log(data);
     this.onSubmit(data);
   }
 }
