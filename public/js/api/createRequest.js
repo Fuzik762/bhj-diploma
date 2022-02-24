@@ -17,7 +17,7 @@ const createRequest = (options = {}) => {
         url += key + '=' + value + '&';
       }
     }
-    if(method === 'POST') {
+    if(method !== 'GET') {
       this.formData = new FormData;
       for ([key, value] of data) {
         formData.append( key, value );

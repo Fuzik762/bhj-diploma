@@ -16,10 +16,11 @@ class AccountsWidget {
   constructor( element ) {
     if(element) {
       this.element = element;
-      this.update();
       setTimeout(() => {
         this.registerEvents();
-      }, 200);
+      }, 300);
+      
+      this.update();  
       
     } else {
       console.error('Ошибка! Элемент не существует!');
@@ -39,7 +40,6 @@ class AccountsWidget {
       App.getModal('createAccount').open();
     })
     const accountsList = this.element.querySelectorAll('.account');
-    console.log(accountsList)
       accountsList.forEach(account => {
         account.addEventListener('click', (e) => {
           e.preventDefault();
@@ -80,7 +80,7 @@ class AccountsWidget {
   clear() {
     const accounts = this.element.querySelectorAll('.account');
     accounts.forEach(element => {
-      element.remove();
+      element.innerHTML = ''
     });
   }
 
@@ -94,9 +94,11 @@ class AccountsWidget {
   onSelectAccount( element ) {
     const activeAccount = this.element.querySelector('.active');
     if(activeAccount) {
-    activeAccount.classList.remove('active');
+      activeAccount.classList.remove('active');
     }
     element.classList.add('active');
+
+    App.showPage('transactions', { account_id: element.dataset.id });
   } 
 
   /**
@@ -105,14 +107,15 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
-    this.element.insertAdjacentHTML('beforeend', `
-    <li class="account">
+    const accountElement = item.innerHTML = `
+    <li class="account" data-id="${item.id}">
       <a href="#">
           <span>${item.name}</span> /
           <span>${item.sum}</span>
       </a>
     </li>
-    `)
+    `;
+    return accountElement;
   }
 
   /**
@@ -123,7 +126,7 @@ class AccountsWidget {
    * */
   renderItem(data){
     data.forEach(item => {
-      this.getAccountHTML(item);
+      this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
     });
   }
 }
