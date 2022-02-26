@@ -11,6 +11,12 @@
       "email": "123@mail.ru",
       "password": "123",
       "id": "2xida9exkzo0exd5"
+    },
+    {
+      "name": "Проверочный",
+      "email": "test@test",
+      "password": "test",
+      "id": "2xida46kl03uebxl"
     }
   ],
   "accounts": [
@@ -28,11 +34,6 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
-    },
-    {
-      "name": "123",
-      "user_id": "2xida9exkzo0exd5",
-      "id": "2xidagi1kzwnxk9n"
     },
     {
       "name": "234",
@@ -214,13 +215,40 @@
       "created_at": "2022-02-24T17:44:23.233Z"
     },
     {
-      "id": "2xida5yzl01a5hk2",
+      "id": "2xida6gfl03v9h66",
       "type": "income",
-      "name": "123",
-      "sum": 1000,
-      "account_id": "2xidagi1kzwnxk9n",
+      "name": "Деньги",
+      "sum": 200,
+      "account_id": "2xida4fll00yr74d",
       "user_id": "2xida9exkzo0exd5",
-      "created_at": "2022-02-24T17:49:24.385Z"
+      "created_at": "2022-02-26T13:15:54.798Z"
+    },
+    {
+      "id": "2xida6i5l03v9or5",
+      "type": "expense",
+      "name": "Потерял деньги",
+      "sum": 5000,
+      "account_id": "2xida4fll00yr74d",
+      "user_id": "2xida9exkzo0exd5",
+      "created_at": "2022-02-26T13:16:04.624Z"
+    },
+    {
+      "id": "2xida6jvl03va25d",
+      "type": "income",
+      "name": "Нашел на лавке",
+      "sum": 3000,
+      "account_id": "2xidacc4l013488i",
+      "user_id": "2xida9exkzo0exd5",
+      "created_at": "2022-02-26T13:16:21.984Z"
+    },
+    {
+      "id": "2xida6kyl03vahhp",
+      "type": "income",
+      "name": "Нашёл в автобусе",
+      "sum": 50,
+      "account_id": "2xidacc4l013488i",
+      "user_id": "2xida9exkzo0exd5",
+      "created_at": "2022-02-26T13:16:41.868Z"
     }
   ]
 }

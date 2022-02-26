@@ -16,10 +16,7 @@ class AccountsWidget {
   constructor( element ) {
     if(element) {
       this.element = element;
-      setTimeout(() => {
-        this.registerEvents();
-      }, 300);
-      
+      this.registerEvents();
       this.update();  
       
     } else {
@@ -39,13 +36,13 @@ class AccountsWidget {
     btnAccount.addEventListener('click', () => {
       App.getModal('createAccount').open();
     })
-    const accountsList = this.element.querySelectorAll('.account');
-      accountsList.forEach(account => {
-        account.addEventListener('click', (e) => {
-          e.preventDefault();
-          this.onSelectAccount(account);
-        })
-      }) 
+    this.element.addEventListener('click', (e) => {
+      const account = e.target.closest('.account')
+      if(account) {
+        e.preventDefault();
+        this.onSelectAccount(account);
+      }
+    })
   }
 
   /**
@@ -80,7 +77,7 @@ class AccountsWidget {
   clear() {
     const accounts = this.element.querySelectorAll('.account');
     accounts.forEach(element => {
-      element.innerHTML = ''
+      element.remove()
     });
   }
 
@@ -125,6 +122,7 @@ class AccountsWidget {
    * и добавляет его внутрь элемента виджета
    * */
   renderItem(data){
+    // console.log(data)
     data.forEach(item => {
       this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
     });
